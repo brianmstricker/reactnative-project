@@ -22,7 +22,7 @@ const BottomNav = () => {
         component={MainScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon name="home-circle" size={35} color={color} />
+            <Icon name="home" size={35} color={color} />
           ),
         }}
       />
