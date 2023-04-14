@@ -5,13 +5,16 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  TouchableHighlight,
 } from "react-native-gesture-handler";
 import { HOMEPAGEITEMS } from "../assets/HOMEPAGEITEMS";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import DetailScreen from "./DetailScreen";
 
 const { width } = Dimensions.get("screen");
 const cardWidth = width / 2 - 20;
 
-const MainScreen = () => {
+const MainScreen = ({ navigation }) => {
   const [categoryBarIdx, setCategoryBarIdx] = useState();
   const Categories = () => {
     return (
@@ -54,21 +57,65 @@ const MainScreen = () => {
   };
   const Card = ({ food }) => {
     return (
-      <View style={styles.card}>
-        <View>
-          <Image source={food.image} style={styles.categoriesImg} />
+      <TouchableHighlight
+        style={{ backgroundColor: "#d9d9d9" }}
+        activeOpacity={0.95}
+        underlayColor={"transparent"}
+        onPress={() => {
+          navigation.navigate("DetailScreen", food);
+        }}
+      >
+        <View style={styles.card}>
+          <View>
+            <Image source={food.image} style={styles.cardImg} />
+          </View>
+          <View
+            style={{ marginHorizontal: 10, marginTop: 10, alignSelf: "center" }}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                color: "#262626",
+              }}
+            >
+              {food.name}
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              marginTop: 35,
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingHorizontal: 20,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                color: "#262626",
+                fontWeight: "bold",
+              }}
+            >
+              ${food.price}
+            </Text>
+            <View>
+              <Icon name="plus-circle" size={40} color="#ff3a3a" />
+            </View>
+          </View>
         </View>
-      </View>
+      </TouchableHighlight>
     );
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#e9e8e8" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#d9d9d9" }}>
       <View style={styles.header}>
         <View>
           <View style={{ flexDirection: "row" }}>
             <Text style={{ fontSize: 28 }}>Welcome,</Text>
             <Text style={{ fontSize: 28, fontWeight: "bold", marginLeft: 5 }}>
-              Brian
+              Guest
             </Text>
           </View>
           <Text style={{ fontSize: 18, color: "#a9a9a9", marginTop: 5 }}>
@@ -125,12 +172,21 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   card: {
-    height: 200,
+    height: 240,
     width: cardWidth,
     backgroundColor: "#fff",
     borderRadius: 20,
     marginHorizontal: 10,
-    marginVertical: 10,
+    marginVertical: 25,
+    elevation: 12,
+  },
+  cardImg: {
+    height: 120,
+    width: cardWidth - 20,
+    resizeMode: "cover",
+    borderRadius: 50,
+    top: -20,
+    alignSelf: "center",
   },
 });
 

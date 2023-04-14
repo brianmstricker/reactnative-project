@@ -12,7 +12,7 @@ import sandwichAnimated from "./images/sandwich-animated.png";
 export const HOMEPAGEITEMS = [
   {
     id: 0,
-    name: "Burger",
+    name: "Classic Burger",
     image: burger,
     description:
       "A burger is a sandwich consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun. The patty may be pan fried, barbecued, or flame broiled.",
@@ -34,7 +34,7 @@ export const HOMEPAGEITEMS = [
   },
   {
     id: 2,
-    name: "Pasta",
+    name: "Classic Pasta",
     image: pasta,
     description:
       "Pasta is a staple food of traditional Italian cuisine, with the first reference dating to 1154 in Sicily. It is also commonly used to refer to the variety of pasta dishes.",

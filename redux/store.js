@@ -10,6 +10,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { cartReducer } from "../features/cartSlice";
 
 const config = {
   key: "root",
@@ -18,7 +19,9 @@ const config = {
 };
 
 export const store = configureStore({
-  reducer: persistCombineReducers(config, {}),
+  reducer: persistCombineReducers(config, {
+    cart: cartReducer,
+  }),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

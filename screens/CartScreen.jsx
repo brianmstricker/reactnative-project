@@ -1,7 +1,107 @@
-import { View } from "react-native";
+import { FlatList } from "react-native";
+import { View, SafeAreaView, Text, StyleSheet, Image } from "react-native";
+import { Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart } from "../features/cartSlice";
 
-const CartScreen = () => {
-  return <View></View>;
+const CartScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cartItems);
+  const cartQuantity = useSelector((state) => state.cart.cartQuantity);
+  const itemQuantity = useSelector((state) => state.cart.itemQuantity);
+  const total = useSelector((state) => state.cart.cartTotal);
+  console.log(cart);
+  console.log(itemQuantity);
+  console.log(cartQuantity);
+  console.log(total);
+  const cartCard = ({ item }) => {
+    return (
+      <View style={styles.cartCard}>
+        <Image
+          style={{
+            width: 125,
+            height: 125,
+            borderRadius: 10,
+            alignSelf: "center",
+          }}
+          source={item.image}
+        />
+        <View style={{ marginLeft: 20, justifyContent: "space-around" }}>
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>{item.name}</Text>
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            ${item.price}
+          </Text>
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            Quantity: {itemQuantity}
+          </Text>
+        </View>
+      </View>
+    );
+  };
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.header}>
+        <Icon
+          name="arrow-left-circle"
+          size={40}
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        />
+        <Text style={{ fontSize: 24, fontWeight: "bold", marginLeft: 10 }}>
+          Menu
+        </Text>
+      </View>
+      <View>
+        <Text style={{ fontSize: 30, fontWeight: "bold", textAlign: "center" }}>
+          Cart
+        </Text>
+        <Button
+          title="clear cart"
+          buttonStyle={{ width: 100, alignSelf: "center" }}
+          onPress={() => {
+            dispatch(clearCart());
+          }}
+        />
+      </View>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 20 }}
+        data={cart}
+        renderItem={cartCard}
+      />
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: 10,
+        }}
+      >
+        <Text style={{ fontSize: 28, fontWeight: "bold" }}>
+          Total: ${total.toFixed(2)}
+        </Text>
+      </View>
+    </SafeAreaView>
+  );
 };
-
+const styles = StyleSheet.create({
+  header: {
+    paddingTop: 50,
+    paddingBottom: 10,
+    paddingHorizontal: 10,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  cartCard: {
+    height: 125,
+    width: "90%",
+    backgroundColor: "#fff",
+    elevation: 15,
+    borderRadius: 10,
+    marginVertical: 10,
+    alignSelf: "center",
+    flexDirection: "row",
+  },
+});
 export default CartScreen;
