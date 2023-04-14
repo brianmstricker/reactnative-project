@@ -3,7 +3,7 @@ import { View, SafeAreaView, Text, StyleSheet, Image } from "react-native";
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useSelector, useDispatch } from "react-redux";
-import { clearCart } from "../features/cartSlice";
+import { clearCart, addToCart, removeFromCart } from "../features/cartSlice";
 
 const CartScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -27,9 +27,24 @@ const CartScreen = ({ navigation }) => {
           <Text style={{ fontSize: 20, fontWeight: "bold" }}>
             ${item.price}
           </Text>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            Quantity: {item.itemQuantity}
-          </Text>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+              Quantity: {item.itemQuantity}
+            </Text>
+            <View style={{ flexDirection: "row", marginLeft: 20 }}>
+              <Icon
+                name="plus-circle-outline"
+                size={30}
+                onPress={() => dispatch(addToCart(item))}
+              />
+              <Icon
+                name="minus-circle-outline"
+                size={30}
+                style={{ marginLeft: 5 }}
+                onPress={() => dispatch(removeFromCart(item))}
+              />
+            </View>
+          </View>
         </View>
       </View>
     );
@@ -87,11 +102,12 @@ const CartScreen = ({ navigation }) => {
           marginBottom: 10,
         }}
       >
-        <Text style={{ fontSize: 28, fontWeight: "bold" }}>
+        {/* <Text style={{ fontSize: 28, fontWeight: "bold" }}>
           Quantity: {cartQuantity}
-        </Text>
+        </Text> */}
         <Text style={{ fontSize: 28, fontWeight: "bold" }}>
-          Total: ${total.toFixed(2)}
+          {/* Total: ${total.toFixed(2)} */}
+          Total: ${Math.abs(total.toFixed(2))}
         </Text>
       </View>
     </SafeAreaView>

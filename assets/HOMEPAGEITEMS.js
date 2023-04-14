@@ -8,6 +8,7 @@ import drinkAnimated from "./images/drink-animated.png";
 import pastaAnimated from "./images/pasta-animated.jpg";
 import pizzaAnimated from "./images/pizzaslice1-animated.png";
 import sandwichAnimated from "./images/sandwich-animated.png";
+import whitePasta from "./images/whitepasta-small.jpg";
 
 export const HOMEPAGEITEMS = [
   {
@@ -64,5 +65,16 @@ export const HOMEPAGEITEMS = [
     price: 4.99,
     category: "drink",
     categoryImg: drinkAnimated,
+  },
+  {
+    id: 5,
+    name: "White Pasta",
+    image: whitePasta,
+    description:
+      "White pasta is a type of pasta that is made with a white sauce. The sauce is usually made with milk, butter, and flour. The sauce is usually made with milk, butter, and flour.",
+    featured: false,
+    price: 12.99,
+    category: "pasta",
+    categoryImg: pastaAnimated,
   },
 ];

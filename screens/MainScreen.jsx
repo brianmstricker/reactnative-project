@@ -16,6 +16,7 @@ const cardWidth = width / 2 - 20;
 
 const MainScreen = ({ navigation }) => {
   const [categoryBarIdx, setCategoryBarIdx] = useState();
+  const renderedCategories = [];
   const Categories = () => {
     return (
       <ScrollView
@@ -24,33 +25,38 @@ const MainScreen = ({ navigation }) => {
         contentContainerStyle={styles.categoryContainer}
       >
         {HOMEPAGEITEMS.map((item, idx) => {
-          return (
-            <TouchableOpacity
-              key={idx}
-              activeOpacity={0.8}
-              onPress={() => setCategoryBarIdx(idx)}
-            >
-              <View
-                style={{
-                  backgroundColor:
-                    categoryBarIdx == idx ? "#ed0000" : "#ff8c8c",
-                  ...styles.categoryBtn,
-                }}
+          if (!renderedCategories.includes(item.category)) {
+            renderedCategories.push(item.category);
+            return (
+              <TouchableOpacity
+                key={idx}
+                activeOpacity={0.8}
+                onPress={() => setCategoryBarIdx(idx)}
               >
-                <View style={styles.categoryImgContainer}>
-                  <Image
-                    source={item.categoryImg}
-                    style={styles.categoriesImg}
-                  />
-                </View>
-                <Text
-                  style={{ fontSize: 15, fontWeight: "bold", marginLeft: 10 }}
+                <View
+                  style={{
+                    backgroundColor:
+                      categoryBarIdx == idx ? "#ed0000" : "#ff8c8c",
+                    ...styles.categoryBtn,
+                  }}
                 >
-                  {item.category}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
+                  <View style={styles.categoryImgContainer}>
+                    <Image
+                      source={item.categoryImg}
+                      style={styles.categoriesImg}
+                    />
+                  </View>
+                  <Text
+                    style={{ fontSize: 15, fontWeight: "bold", marginLeft: 10 }}
+                  >
+                    {item.category}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          } else {
+            return null;
+          }
         })}
       </ScrollView>
     );
@@ -150,8 +156,8 @@ const styles = StyleSheet.create({
   },
   categoryBtn: {
     flexDirection: "row",
-    width: 150,
-    height: 80,
+    width: 160,
+    height: 70,
     marginHorizontal: 7,
     borderRadius: 40,
     alignItems: "center",

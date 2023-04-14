@@ -27,11 +27,17 @@ const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
-      state.cartItems = state.cartItems.filter(
-        (item) => item.id !== action.payload.id
+      const itemIdx = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
       );
-      state.cartQuantity -= 1;
-      state.cartTotal -= action.payload.price;
+      if (itemIdx >= 0) {
+        state.cartItems[itemIdx].itemQuantity -= 1;
+        state.cartQuantity -= 1;
+        state.cartTotal -= action.payload.price;
+        if (state.cartItems[itemIdx].itemQuantity <= 0) {
+          state.cartItems.splice(itemIdx, 1);
+        }
+      }
     },
     clearCart: (state) => {
       state.cartItems = [];
