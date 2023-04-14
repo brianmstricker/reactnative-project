@@ -25,7 +25,7 @@ const CartScreen = ({ navigation }) => {
         <View style={{ marginLeft: 20, justifyContent: "space-around" }}>
           <Text style={{ fontSize: 20, fontWeight: "bold" }}>{item.name}</Text>
           <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            ${item.price}
+            ${(item.price * item.itemQuantity).toFixed(2)}
           </Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Text style={{ fontSize: 20, fontWeight: "bold" }}>

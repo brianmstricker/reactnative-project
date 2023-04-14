@@ -9,6 +9,7 @@ import pastaAnimated from "./images/pasta-animated.jpg";
 import pizzaAnimated from "./images/pizzaslice1-animated.png";
 import sandwichAnimated from "./images/sandwich-animated.png";
 import whitePasta from "./images/whitepasta-small.jpg";
+import clubSandwich from "./images/clubsandwich.jpg";
 
 export const HOMEPAGEITEMS = [
   {
@@ -76,5 +77,16 @@ export const HOMEPAGEITEMS = [
     price: 12.99,
     category: "pasta",
     categoryImg: pastaAnimated,
+  },
+  {
+    id: 6,
+    name: "Chicken Club",
+    image: clubSandwich,
+    description:
+      "A chicken club sandwich is a sandwich made with chicken, bacon, lettuce, and tomato.",
+    featured: false,
+    price: 10.99,
+    category: "sandwich",
+    categoryImg: sandwichAnimated,
   },
 ];

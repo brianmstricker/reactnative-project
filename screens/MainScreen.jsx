@@ -83,6 +83,7 @@ const MainScreen = ({ navigation }) => {
                 fontSize: 20,
                 fontWeight: "bold",
                 color: "#262626",
+                height: 50,
               }}
             >
               {food.name}
@@ -91,7 +92,7 @@ const MainScreen = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              marginTop: 35,
+              marginTop: 10,
               justifyContent: "space-between",
               alignItems: "center",
               paddingHorizontal: 20,

@@ -63,16 +63,21 @@ const DetailScreen = ({ navigation, route }) => {
       </View>
       <View style={styles.textBox}>
         <View style={{ height: 300, justifyContent: "space-between" }}>
-          <Text
-            style={{
-              fontSize: 28,
-              fontWeight: "bold",
-              color: "#fff",
-              textAlign: "center",
-            }}
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-evenly" }}
           >
-            {item.name}
-          </Text>
+            <Icon name="heart-outline" size={40} color="#fff" />
+            <Text
+              style={{
+                fontSize: 28,
+                fontWeight: "bold",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              {item.name}
+            </Text>
+          </View>
           <Text
             style={{
               fontSize: 16,
