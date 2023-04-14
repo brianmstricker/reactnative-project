@@ -9,12 +9,7 @@ const CartScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cartItems);
   const cartQuantity = useSelector((state) => state.cart.cartQuantity);
-  const itemQuantity = useSelector((state) => state.cart.itemQuantity);
   const total = useSelector((state) => state.cart.cartTotal);
-  console.log(cart);
-  console.log(itemQuantity);
-  console.log(cartQuantity);
-  console.log(total);
   const cartCard = ({ item }) => {
     return (
       <View style={styles.cartCard}>
@@ -33,7 +28,7 @@ const CartScreen = ({ navigation }) => {
             ${item.price}
           </Text>
           <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            Quantity: {itemQuantity}
+            Quantity: {item.itemQuantity}
           </Text>
         </View>
       </View>
@@ -49,11 +44,25 @@ const CartScreen = ({ navigation }) => {
             navigation.navigate("Home");
           }}
         />
-        <Text style={{ fontSize: 24, fontWeight: "bold", marginLeft: 10 }}>
+        <Text
+          style={{
+            fontSize: 24,
+            fontWeight: "bold",
+            marginLeft: 10,
+            color: "#a9a9a9",
+          }}
+        >
           Menu
         </Text>
       </View>
-      <View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          marginVertical: 10,
+        }}
+      >
         <Text style={{ fontSize: 30, fontWeight: "bold", textAlign: "center" }}>
           Cart
         </Text>
@@ -78,6 +87,9 @@ const CartScreen = ({ navigation }) => {
           marginBottom: 10,
         }}
       >
+        <Text style={{ fontSize: 28, fontWeight: "bold" }}>
+          Quantity: {cartQuantity}
+        </Text>
         <Text style={{ fontSize: 28, fontWeight: "bold" }}>
           Total: ${total.toFixed(2)}
         </Text>

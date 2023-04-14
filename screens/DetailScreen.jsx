@@ -44,7 +44,14 @@ const DetailScreen = ({ navigation, route }) => {
             navigation.goBack();
           }}
         />
-        <Text style={{ fontSize: 24, fontWeight: "bold", marginLeft: 10 }}>
+        <Text
+          style={{
+            fontSize: 24,
+            fontWeight: "bold",
+            marginLeft: 10,
+            color: "#a9a9a9",
+          }}
+        >
           Menu
         </Text>
       </View>
